@@ -153,14 +153,14 @@ namespace Numbers_Game
         {
             try
             {
-                Console.WriteLine($"Please inter a number between 1 and {arr.Length}");// ask user to inter random number between 1 and size of array 
-                String ranNum = Console.ReadLine();                                    // to get the element in that index and multiply it with sum
+                Console.WriteLine($"Please inter a number between 1 and {arr.Length}");
+                String ranNum = Console.ReadLine();                                    
                 int productNum = Convert.ToInt32(ranNum);
                 int product = sum * arr[productNum - 1];
                 return product;
             }
-            catch (IndexOutOfRangeException e) // if user input number greater than array's size 
-            {                                  // throw an error to let user know his input greater than array's size
+            catch (IndexOutOfRangeException e) 
+            {                                 
                 Console.WriteLine(e.Message);
                 throw;
             }
@@ -194,14 +194,14 @@ namespace Numbers_Game
         {
             try
             {
-                Console.WriteLine($"Please enter a number to divide your product {product} by"); // ask user to inter random number to divide the product on it 
+                Console.WriteLine($"Please enter a number to divide your product {product} by");  
                 String divideNum = Console.ReadLine();
                 decimal divide = Convert.ToDecimal(divideNum);
 
                 decimal quotient = decimal.Divide(product, divide);
                 return quotient;
             }
-            catch (DivideByZeroException e) // if user input zero , throw an error because we cannot divide by zero
+            catch (DivideByZeroException e)
             {
                 Console.WriteLine(e.Message);
                 return 0;
