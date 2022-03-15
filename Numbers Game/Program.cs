@@ -38,26 +38,29 @@ namespace Numbers_Game
                 Console.WriteLine("Enter a number greater than zero");
 
                 int[] arr = new int[Convert.ToInt32(Console.ReadLine())];
-                Populate(arr);
+          
 
-
+                int[] resultArray = Populate(arr);
                 int sum = GetSum(arr);
 
 
-                int multArr = GetProduct(arr, sum);
-
-
-                decimal quot = GetQuotient(multArr);
+                int product = GetProduct(resultArray, sum);
+                decimal quotient = GetQuotient(product);
 
 
                 Console.WriteLine("Your arry is size " + arr.Length);
-                Console.WriteLine("The number in the array are" + arr);
+                Console.WriteLine("The number in the array are" );
+                for (int i = 0; i < resultArray.Length; i++)
+                {
+                    Console.Write(resultArray[i] + ",");
+                }
+                Console.WriteLine(" ");
                 Console.WriteLine("The sum of the array is " + sum);
-                //  Console.WriteLine(sum + * + "=");
-               // Console.WriteLine(product + / + + "=");
+                Console.WriteLine(sum + " * " + (product / sum) + " = " + product);
+                decimal division = Convert.ToDecimal(product) / quotient;
+                Console.WriteLine(product + " / " + division + " = " + quotient);
 
 
-                
             }
             catch (IndexOutOfRangeException)
             {
@@ -150,28 +153,39 @@ namespace Numbers_Game
         {
             try
             {
-
-                int num, product = 0;
-
-                do
-                {
-                    Console.WriteLine("Please select number  between  1 and " + arr.Length);
-                    num = Convert.ToInt32(Console.ReadLine());
-
-                } while (num <= 1 || num > arr.Length);
-
-                product = sum * arr[(num - 1)];
-
+                Console.WriteLine($"Please inter a number between 1 and {arr.Length}");// ask user to inter random number between 1 and size of array 
+                String ranNum = Console.ReadLine();                                    // to get the element in that index and multiply it with sum
+                int productNum = Convert.ToInt32(ranNum);
+                int product = sum * arr[productNum - 1];
                 return product;
-
-
-
             }
-            catch (IndexOutOfRangeException e)
-            {
+            catch (IndexOutOfRangeException e) // if user input number greater than array's size 
+            {                                  // throw an error to let user know his input greater than array's size
                 Console.WriteLine(e.Message);
-                throw e;
+                throw;
             }
+
+            //    int num, product = 0;
+
+            //      do
+            //        {
+            //              Console.WriteLine("Please select number  between  1 and " + arr.Length);
+            //                num = Convert.ToInt32(Console.ReadLine());
+
+            //              } while (num <= 1 || num > arr.Length);
+
+            //                product = sum * arr[(num - 1)];
+
+            //   return product;
+
+
+
+            //}
+            //catch (IndexOutOfRangeException e)
+            //{
+            //   Console.WriteLine(e.Message);
+            //     throw e;
+            // }
 
         }
 
@@ -180,20 +194,31 @@ namespace Numbers_Game
         {
             try
             {
+                Console.WriteLine($"Please enter a number to divide your product {product} by"); // ask user to inter random number to divide the product on it 
+                String divideNum = Console.ReadLine();
+                decimal divide = Convert.ToDecimal(divideNum);
 
-                decimal result = 0;
-
-                Console.WriteLine("Please enter a number to divide " + product + " by");
-
-
-                result = decimal.Divide(product, Convert.ToInt32(Console.ReadLine()));
-               
-                return result;
+                decimal quotient = decimal.Divide(product, divide);
+                return quotient;
             }
-            catch (DivideByZeroException e)
+            catch (DivideByZeroException e) // if user input zero , throw an error because we cannot divide by zero
             {
                 Console.WriteLine(e.Message);
                 return 0;
+
+                //  decimal result = 0;
+
+                //Console.WriteLine("Please enter a number to divide " + product + " by");
+
+
+                //result = decimal.Divide(product, Convert.ToInt32(Console.ReadLine()));
+
+                //return result;
+                // }
+                //catch (DivideByZeroException e)
+                //{
+                //  Console.WriteLine(e.Message);
+                //return 0;
             }
 
 
